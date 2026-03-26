@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Shreya Vyas — Data Scientist & Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#09090e;--bg2:#0f0f17;--surface:#141420;--surface2:#1c1c2c;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.12);
+  --text:#eeeef5;--dim:#7878a0;--muted:#3a3a55;
+  --accent:#ff6b6b;--accent2:#ffa94d;--accent3:#74c0fc;
+  --accentG:linear-gradient(135deg,#ff6b6b,#ffa94d);
+  --aGlow:rgba(255,107,107,0.13);--a2Glow:rgba(255,169,77,0.11);--a3Glow:rgba(116,192,252,0.11);
+  --r:14px;--ease:cubic-bezier(.16,1,.3,1);
+}
+[data-theme="light"]{
+  --bg:#f7f5f0;--bg2:#efecea;--surface:#ffffff;--surface2:#f0eeea;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.12);
+  --text:#111118;--dim:#555570;--muted:#c0bfd0;
+  --accent:#d63e3e;--accent2:#c97a00;--accent3:#1971c2;
+  --aGlow:rgba(214,62,62,0.09);--a2Glow:rgba(201,122,0,0.09);--a3Glow:rgba(25,113,194,0.09);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none;line-height:1.6;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;border:none;background:none;cursor:none;}
+ul{list-style:none;}
+::selection{background:var(--aGlow);color:var(--accent);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--muted);border-radius:10px;}
+
+/* CURSOR */
+#cur,#cur-r{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%);}
+#cur{width:8px;height:8px;background:var(--accent);transition:width .25s,height .25s,background .25s;}
+#cur-r{width:38px;height:38px;border:1.5px solid rgba(255,107,107,.4);transition:width .3s,height .3s,opacity .3s;}
+body.ch #cur{width:18px;height:18px;background:var(--accent2);}
+body.ch #cur-r{width:56px;height:56px;opacity:.28;border-color:rgba(255,169,77,.5);}
+
+/* GRAIN */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:1;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+  opacity:.45;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 56px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .4s,backdrop-filter .4s,border-color .4s;border-bottom:1px solid transparent;}
+nav.stuck{background:rgba(9,9,14,.84);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-color:var(--border);}
+[data-theme="light"] nav.stuck{background:rgba(247,245,240,.9);}
+.n-logo{font-family:'DM Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:.08em;font-weight:500;}
+.n-links{display:flex;align-items:center;gap:32px;}
+.n-links a{font-family:'DM Mono',monospace;font-size:12px;color:var(--dim);letter-spacing:.07em;position:relative;transition:color .3s;}
+.n-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:100%;height:1px;background:var(--accent);transition:right .35s var(--ease);}
+.n-links a:hover{color:var(--text);}
+.n-links a:hover::after{right:0;}
+.n-btns{display:flex;gap:8px;}
+.n-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);color:var(--dim);
+  display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .3s;}
+.n-btn:hover{background:var(--surface);color:var(--text);}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:130px 56px 80px;position:relative;overflow:hidden;}
+.h-grid{position:absolute;inset:0;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 80% 80% at 45% 55%,black 10%,transparent 100%);
+  pointer-events:none;}
+.h-orb1{position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,107,107,.07) 0%,transparent 65%);
+  top:45%;left:28%;transform:translate(-50%,-50%);pointer-events:none;}
+.h-orb2{position:absolute;width:450px;height:450px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,169,77,.05) 0%,transparent 65%);
+  bottom:8%;right:8%;pointer-events:none;}
+.h-pill{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;border-radius:100px;
+  border:1px solid rgba(255,107,107,.22);background:rgba(255,107,107,.07);
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:.09em;
+  margin-bottom:36px;opacity:0;animation:fu .7s .3s forwards;}
+.h-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+.h-name{font-size:clamp(54px,9.5vw,128px);font-weight:800;line-height:.92;letter-spacing:-.035em;margin-bottom:8px;}
+.h-name .row{display:block;overflow:hidden;}
+.h-name .row span{display:block;opacity:0;animation:su .85s var(--ease) forwards;}
+.h-name .row:nth-child(1) span{animation-delay:.45s;}
+.h-name .row:nth-child(2) span{animation-delay:.6s;}
+.h-name em{font-style:italic;font-family:'Playfair Display',serif;
+  background:var(--accentG);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-role{font-family:'DM Mono',monospace;font-size:13px;color:var(--dim);letter-spacing:.1em;
+  margin-bottom:28px;opacity:0;animation:fu .8s .8s forwards;}
+.h-bio{max-width:500px;font-size:17px;color:var(--dim);line-height:1.78;margin-bottom:44px;
+  opacity:0;animation:fu .8s .95s forwards;}
+.h-bio strong{color:var(--text);}
+.h-ctas{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fu .8s 1.1s forwards;}
+.btn-p{padding:13px 26px;background:var(--accent);color:#fff;font-family:'DM Mono',monospace;
+  font-size:12px;font-weight:500;letter-spacing:.06em;border-radius:8px;
+  display:inline-flex;align-items:center;gap:8px;transition:all .3s;box-shadow:0 4px 20px rgba(255,107,107,.26);}
+.btn-p:hover{background:#ff5252;transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,107,107,.38);}
+.btn-g{padding:13px 26px;border:1px solid var(--border2);color:var(--dim);font-family:'DM Mono',monospace;
+  font-size:12px;letter-spacing:.06em;border-radius:8px;display:inline-flex;align-items:center;gap:8px;transition:all .3s;}
+.btn-g:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px);}
+.h-scroll{position:absolute;bottom:38px;left:56px;display:flex;align-items:center;gap:10px;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.12em;
+  opacity:0;animation:fu .8s 1.45s forwards;}
+.h-scroll-ln{width:40px;height:1px;background:var(--muted);}
+.h-stats{position:absolute;bottom:38px;right:56px;display:flex;gap:36px;
+  opacity:0;animation:fu .8s 1.25s forwards;}
+.st{text-align:right;}
+.st-n{font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1;}
+.st-l{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.09em;margin-top:4px;}
+
+/* KEYFRAMES */
+@keyframes fu{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+@keyframes su{from{transform:translateY(110%);}to{transform:none;opacity:1;}}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .75s var(--ease),transform .75s var(--ease);}
+.rv.vis{opacity:1;transform:none;}
+.rv.d1{transition-delay:.1s;}.rv.d2{transition-delay:.2s;}.rv.d3{transition-delay:.3s;}.rv.d4{transition-delay:.4s;}
+
+/* SECTIONS */
+section{padding:108px 56px;position:relative;}
+.s-lbl{font-family:'DM Mono',monospace;font-size:10.5px;color:var(--accent);letter-spacing:.18em;
+  text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.s-lbl::before{content:'';width:22px;height:1px;background:var(--accent);}
+.s-title{font-size:clamp(32px,5vw,60px);font-weight:800;letter-spacing:-.032em;line-height:1.04;margin-bottom:54px;}
+.s-title em{font-style:italic;font-family:'Playfair Display',serif;color:var(--accent);}
+.sec-bg{background:var(--bg2);}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 370px;gap:80px;align-items:start;}
+.about-body p{font-size:17px;color:var(--dim);line-height:1.82;margin-bottom:18px;}
+.about-body p strong{color:var(--text);}
+.about-body p:last-of-type{margin-bottom:36px;}
+.avail{display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:100px;
+  background:rgba(255,107,107,.08);border:1px solid rgba(255,107,107,.2);
+  font-family:'DM Mono',monospace;font-size:11.5px;color:var(--accent);letter-spacing:.06em;}
+.avail .dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+.about-cards{display:flex;flex-direction:column;gap:14px;}
+.ic{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;transition:border-color .3s;}
+.ic:hover{border-color:var(--border2);}
+.ic-lbl{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:.12em;margin-bottom:5px;}
+.ic-val{font-size:14px;font-weight:700;color:var(--text);}
+.ic-sub{font-family:'DM Mono',monospace;font-size:12px;color:var(--dim);margin-top:3px;}
+.ic-badge{display:inline-flex;align-items:center;gap:5px;margin-top:7px;
+  background:rgba(116,192,252,.1);border:1px solid rgba(116,192,252,.2);
+  color:var(--accent3);font-family:'DM Mono',monospace;font-size:11px;padding:3px 10px;border-radius:100px;}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;}
+.exp{display:grid;grid-template-columns:185px 1fr;gap:44px;padding:40px 0;
+  border-top:1px solid var(--border);position:relative;transition:background .25s;}
+.exp:last-child{border-bottom:1px solid var(--border);}
+.exp::before{content:'';position:absolute;left:-56px;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--accent),var(--accent2));
+  transform:scaleY(0);transform-origin:top;transition:transform .45s var(--ease);}
+.exp:hover::before{transform:scaleY(1);}
+.exp-dt{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.06em;margin-bottom:6px;}
+.exp-co{font-size:13px;font-weight:600;color:var(--accent);font-family:'DM Mono',monospace;margin-bottom:2px;}
+.exp-loc{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+.exp-type{font-size:11.5px;font-family:'DM Mono',monospace;color:var(--dim);letter-spacing:.05em;display:block;margin-bottom:4px;}
+.exp-ttl{font-size:21px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;}
+.exp-bul{margin-bottom:14px;}
+.exp-bul li{font-size:14px;color:var(--dim);line-height:1.68;padding:4px 0 4px 17px;position:relative;}
+.exp-bul li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;top:6px;}
+.exp-bul li strong{color:var(--text);}
+.tags{display:flex;flex-wrap:wrap;gap:7px;}
+.tag{font-family:'DM Mono',monospace;font-size:10.5px;padding:4px 11px;border-radius:100px;
+  background:var(--surface);border:1px solid var(--border);color:var(--dim);letter-spacing:.04em;transition:all .2s;}
+.tag:hover{border-color:var(--accent);color:var(--accent);}
+.tag.hi{background:var(--aGlow);border-color:rgba(255,107,107,.22);color:var(--accent);}
+
+/* SKILLS */
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.sk{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:all .35s;}
+.sk:hover{transform:translateY(-5px);border-color:var(--border2);box-shadow:0 18px 48px rgba(0,0,0,.32);}
+.sk-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:13px;}
+.sk:nth-child(1) .sk-ico{background:var(--aGlow);}
+.sk:nth-child(2) .sk-ico{background:var(--a2Glow);}
+.sk:nth-child(3) .sk-ico{background:var(--a3Glow);}
+.sk:nth-child(4) .sk-ico{background:rgba(180,120,255,.09);}
+.sk:nth-child(5) .sk-ico{background:rgba(100,230,130,.08);}
+.sk:nth-child(6) .sk-ico{background:rgba(250,180,100,.08);}
+.sk-cat{font-size:13px;font-weight:700;margin-bottom:13px;}
+.sk-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.sp{font-family:'DM Mono',monospace;font-size:11px;padding:4px 10px;border-radius:6px;
+  background:var(--bg);border:1px solid var(--border);color:var(--dim);transition:all .2s;}
+.sp:hover{color:var(--accent);border-color:rgba(255,107,107,.3);}
+.sp.hl{background:var(--aGlow);border-color:rgba(255,107,107,.22);color:var(--accent);}
+
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.pc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;
+  position:relative;overflow:hidden;transition:all .38s;cursor:none;}
+.pc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .38s;}
+.pc:nth-child(1)::before{background:linear-gradient(135deg,var(--aGlow),transparent 55%);}
+.pc:nth-child(2)::before{background:linear-gradient(135deg,var(--a2Glow),transparent 55%);}
+.pc:nth-child(3)::before{background:linear-gradient(135deg,var(--a3Glow),transparent 55%);}
+.pc:nth-child(4)::before{background:linear-gradient(135deg,rgba(150,220,150,.07),transparent 55%);}
+.pc:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(0,0,0,.42);}
+.pc:nth-child(1):hover{border-color:rgba(255,107,107,.2);}
+.pc:nth-child(2):hover{border-color:rgba(255,169,77,.2);}
+.pc:nth-child(3):hover{border-color:rgba(116,192,252,.2);}
+.pc:nth-child(4):hover{border-color:rgba(150,220,150,.2);}
+.pc:hover::before{opacity:1;}
+.pc-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:16px;}
+.pc-arr{position:absolute;top:26px;right:26px;width:32px;height:32px;
+  border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:12px;transition:all .32s;}
+.pc:hover .pc-arr{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg);}
+.pc-ttl{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:9px;padding-right:42px;}
+.pc-desc{font-size:13.5px;color:var(--dim);line-height:1.7;margin-bottom:12px;}
+.pc-imp{font-family:'DM Mono',monospace;font-size:11px;padding:7px 12px;border-radius:8px;margin-bottom:14px;display:inline-block;}
+.pc:nth-child(1) .pc-imp{color:var(--accent);background:var(--aGlow);border:1px solid rgba(255,107,107,.15);}
+.pc:nth-child(2) .pc-imp{color:var(--accent2);background:var(--a2Glow);border:1px solid rgba(255,169,77,.15);}
+.pc:nth-child(3) .pc-imp{color:var(--accent3);background:var(--a3Glow);border:1px solid rgba(116,192,252,.15);}
+.pc:nth-child(4) .pc-imp{color:#74ee95;background:rgba(116,238,149,.07);border:1px solid rgba(116,238,149,.15);}
+
+/* ACHIEVEMENT */
+.ach-wrap{background:linear-gradient(135deg,var(--surface),var(--surface2));
+  border:1px solid rgba(255,169,77,.25);border-radius:20px;padding:44px 48px;
+  display:flex;align-items:center;gap:40px;position:relative;overflow:hidden;}
+.ach-wrap::before{content:'';position:absolute;top:-70px;right:-70px;width:280px;height:280px;border-radius:50%;
+  background:radial-gradient(circle,rgba(255,169,77,.12),transparent 70%);pointer-events:none;}
+.ach-medal{width:78px;height:78px;border-radius:50%;
+  background:linear-gradient(135deg,#ffd700,#ff9800);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:34px;
+  box-shadow:0 8px 28px rgba(255,169,77,.35);}
+.ach-ev{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--accent2);letter-spacing:.08em;margin-bottom:8px;}
+.ach-ttl{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:10px;}
+.ach-desc{font-size:15px;color:var(--dim);line-height:1.68;max-width:540px;}
+.ach-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px;}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;}
+.edu{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:30px;transition:all .35s;}
+.edu:hover{border-color:var(--accent3);transform:translateY(-4px);box-shadow:0 14px 40px rgba(0,0,0,.28);}
+.edu-ico{width:46px;height:46px;border-radius:12px;background:var(--a3Glow);
+  display:flex;align-items:center;justify-content:center;font-size:21px;margin-bottom:18px;}
+.edu-deg{font-size:18px;font-weight:700;margin-bottom:5px;letter-spacing:-.01em;}
+.edu-sch{font-size:14px;color:var(--accent3);font-weight:600;margin-bottom:3px;}
+.edu-meta{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted);}
+.edu-gpa{display:inline-flex;align-items:center;gap:5px;margin-top:10px;
+  background:rgba(116,192,252,.1);border:1px solid rgba(116,192,252,.2);
+  color:var(--accent3);font-family:'DM Mono',monospace;font-size:11.5px;padding:4px 12px;border-radius:100px;}
+.edu-sep{margin:14px 0;height:1px;background:var(--border);}
+.edu-dtl{font-size:13px;color:var(--dim);line-height:1.65;}
+
+/* CONTACT */
+.contact-wrap{display:grid;grid-template-columns:1fr 360px;gap:80px;align-items:start;}
+.contact-body p{font-size:16px;color:var(--dim);line-height:1.75;margin-bottom:30px;}
+.clinks{display:flex;flex-direction:column;gap:12px;}
+.cl{display:flex;align-items:center;justify-content:space-between;padding:17px 21px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r);transition:all .3s;}
+.cl:hover{border-color:var(--accent);background:var(--aGlow);transform:translateX(8px);}
+.cl-l{display:flex;align-items:center;gap:13px;}
+.cl-ico{font-size:19px;}
+.cl-name{font-size:14px;font-weight:700;}
+.cl-val{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--dim);}
+.cl-arr{font-size:16px;color:var(--muted);transition:color .3s;}
+.cl:hover .cl-arr{color:var(--accent);}
+.cr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:26px;margin-bottom:14px;}
+.cr-title{font-size:12px;font-weight:700;letter-spacing:.04em;margin-bottom:14px;text-transform:uppercase;font-family:'DM Mono',monospace;color:var(--dim);}
+.cr-items{display:flex;flex-direction:column;gap:10px;}
+.cr-item{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--dim);}
+.cr-item span:first-child{font-size:15px;width:22px;text-align:center;}
+
+/* DIVIDER */
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 56px;}
+
+/* FOOTER */
+footer{padding:22px 56px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);}
+.fl{display:flex;gap:22px;}
+.fl a{color:var(--muted);transition:color .3s;}
+.fl a:hover{color:var(--accent);}
+
+/* CHATBOT */
+#cb-btn{position:fixed;bottom:28px;right:28px;z-index:200;
+  width:52px;height:52px;border-radius:50%;background:var(--accent);
+  display:flex;align-items:center;justify-content:center;font-size:21px;
+  box-shadow:0 6px 22px rgba(255,107,107,.38);transition:all .3s;cursor:none;}
+#cb-btn:hover{transform:scale(1.1);box-shadow:0 10px 32px rgba(255,107,107,.5);}
+#cb-btn.open{background:var(--surface);box-shadow:none;border:1px solid var(--border);}
+#cb-panel{position:fixed;bottom:94px;right:28px;width:390px;height:560px;
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  box-shadow:0 28px 80px rgba(0,0,0,.55);z-index:199;
+  display:flex;flex-direction:column;overflow:hidden;
+  transform:scale(.9) translateY(22px);opacity:0;pointer-events:none;
+  transition:all .32s cubic-bezier(.34,1.56,.64,1);transform-origin:bottom right;}
+#cb-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all;}
+.cb-hd{padding:14px 18px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);flex-shrink:0;}
+.cb-hl{display:flex;align-items:center;gap:12px;min-width:0;}
+.cb-av{width:36px;height:36px;border-radius:50%;background:var(--accentG);
+  display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.cb-hn{font-size:13px;font-weight:700;}
+.cb-hs{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);display:flex;align-items:center;gap:5px;}
+.cb-hs::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+.cb-resume{font-family:'DM Mono',monospace;font-size:10.5px;padding:7px 10px;border-radius:999px;
+  border:1px solid var(--border);background:var(--bg);color:var(--text);white-space:nowrap;transition:all .2s;}
+.cb-resume:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+.cb-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth;}
+.cb-msgs::-webkit-scrollbar{width:3px;}
+.cb-msgs::-webkit-scrollbar-thumb{background:var(--border);}
+.msg{max-width:90%;padding:10px 13px;border-radius:14px;font-size:13px;line-height:1.52;animation:mIn .22s ease;}
+@keyframes mIn{from{opacity:0;transform:translateY(5px);}to{opacity:1;transform:none;}}
+.msg.bot{background:var(--surface);border:1px solid var(--border);color:var(--text);
+  align-self:flex-start;border-bottom-left-radius:4px;}
+.msg.user{background:var(--accent);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;font-weight:500;}
+.msg.typing span{display:inline-block;width:5px;height:5px;background:var(--dim);border-radius:50%;margin:0 2px;animation:bou 1.2s infinite;}
+.msg.typing span:nth-child(2){animation-delay:.2s;}
+.msg.typing span:nth-child(3){animation-delay:.4s;}
+@keyframes bou{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-5px);}}
+.cb-cards{display:grid;grid-template-columns:1fr;gap:8px;max-width:92%;align-self:flex-start;animation:mIn .22s ease;}
+.cb-card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));border:1px solid var(--border);border-radius:14px;padding:11px 12px;}
+.cb-card-title{font-size:12px;font-weight:700;margin-bottom:4px;}
+.cb-card-sub{font-size:10.5px;color:var(--accent);font-family:'DM Mono',monospace;margin-bottom:6px;}
+.cb-card-txt{font-size:12px;color:var(--dim);line-height:1.45;margin-bottom:8px;}
+.cb-card-btn{font-family:'DM Mono',monospace;font-size:10.5px;padding:7px 10px;border-radius:999px;background:var(--surface);border:1px solid var(--border);color:var(--text);transition:all .2s;cursor:none;}
+.cb-card-btn:hover{border-color:var(--accent);color:var(--accent);}
+.cb-chips{padding:10px 13px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:6px;flex-shrink:0;background:rgba(255,255,255,.01);}
+.chip{font-family:'DM Mono',monospace;font-size:10.5px;padding:6px 10px;border-radius:100px;
+  background:var(--surface);border:1px solid var(--border);color:var(--dim);transition:all .2s;cursor:none;}
+.chip:hover{border-color:var(--accent);color:var(--accent);}
+.cb-inp{padding:11px 13px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:center;background:var(--surface);flex-shrink:0;}
+#cb-input{flex:1;background:var(--bg);border:1px solid var(--border);border-radius:9px;
+  padding:9px 12px;color:var(--text);font-family:'Syne',sans-serif;font-size:13px;
+  outline:none;transition:border-color .2s;cursor:text;}
+#cb-input:focus{border-color:var(--accent);}
+#cb-input::placeholder{color:var(--muted);}
+#cb-send{width:34px;height:34px;background:var(--accent);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:14px;
+  color:#fff;transition:all .2s;cursor:none;flex-shrink:0;}
+#cb-send:hover{background:#ff5252;transform:scale(1.05);} 
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:15px 22px;}
+  .n-links a:not(:last-child){display:none;}
+  section{padding:70px 22px;}
+  #hero{padding:108px 22px 70px;}
+  .about-wrap,.contact-wrap{grid-template-columns:1fr;}
+  .exp{grid-template-columns:1fr;gap:10px;}
+  .exp::before{display:none;}
+  .h-stats,.h-scroll{display:none;}
+  .sk-grid{grid-template-columns:repeat(2,1fr);}
+  .proj-grid,.edu-grid{grid-template-columns:1fr;}
+  .ach-wrap{flex-direction:column;gap:22px;padding:28px;}
+  footer{flex-direction:column;gap:12px;text-align:center;}
+  #cb-panel{right:10px;left:10px;width:auto;}
+  .div{margin:0 22px;}
+}
+@media(max-width:600px){
+  .h-name{font-size:50px;}
+  .sk-grid{grid-template-columns:1fr;}
+  .h-ctas{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="n-logo">sv_portfolio.io</div>
+  <div class="n-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+    <div class="n-btns">
+      <button class="n-btn" onclick="toggleTheme()" id="tbtn" title="Toggle theme">☀</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-grid"></div>
+  <div class="h-orb1"></div>
+  <div class="h-orb2"></div>
+  <div class="h-pill"><span class="dot"></span>Open to Full-Time · Atlanta, GA · Dec 2025</div>
+  <h1 class="h-name">
+    <span class="row"><span>Shreya</span></span>
+    <span class="row"><span><em>Vyas.</em></span></span>
+  </h1>
+  <p class="h-role">DATA SCIENTIST &nbsp;·&nbsp; BUSINESS ANALYST &nbsp;·&nbsp; ML ENGINEER</p>
+  <p class="h-bio">
+    M.S. Data Science &amp; Analytics at <strong>Georgia State University</strong> (GPA 3.96/4.0).
+    Ex-<strong>Truist Bank</strong>, <strong>ISRO</strong>, and <strong>Shepherd Center</strong>.
+    Transforming data into decisions through ML, NLP, GenAI, and BI —
+    with measurable impact across finance, healthcare, and space research.
+  </p>
+  <div class="h-ctas">
+    <a href="#projects" class="btn-p">View My Work ↓</a>
+    <a href="mailto:shreyavyas3103@gmail.com" class="btn-g">✉ shreyavyas3103@gmail.com</a>
+    <a href="https://linkedin.com/in/shreya-vyas-2001" target="_blank" class="btn-g">LinkedIn ↗</a>
+    <a href="Resume_Shreya_Vyas_.pdf" download class="btn-g">Download Resume ⤓</a>
+  </div>
+  <div class="h-scroll"><div class="h-scroll-ln"></div>scroll to explore</div>
+  <div class="h-stats">
+    <div class="st"><div class="st-n">3.96</div><div class="st-l">MS GPA / 4.0</div></div>
+    <div class="st"><div class="st-n">504K+</div><div class="st-l">Transactions Processed</div></div>
+    <div class="st"><div class="st-n">7</div><div class="st-l">Roles / Orgs</div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec-bg">
+  <div class="s-lbl">01 — About</div>
+  <div class="about-wrap">
+    <div class="about-body rv">
+      <h2 class="s-title">Data-driven.<br><em>Impact-focused.</em></h2>
+      <p>I'm a <strong>Data Science &amp; Analytics Master's student</strong> at Georgia State University's
+      J. Mack Robinson College of Business, graduating December 2025 with a <strong>GPA of 3.96</strong>.
+      My foundation is a B.E. in Computer Engineering from IET DAVV, Indore (CGPA 8.55).</p>
+      <p>My career has spanned <strong>ML for healthcare outcomes at Shepherd Center</strong>,
+      <strong>fraud detection at Truist Bank</strong>, <strong>satellite analytics at ISRO</strong>,
+      and BI for global campaigns at Omdena and Excelerate.
+      I'm passionate about the full data lifecycle — from ETL pipelines to polished stakeholder dashboards.</p>
+      <p>I work across <strong>Python, SQL, Power BI, Tableau, AWS, LangChain, and LLMs</strong> —
+      and I believe the best analysis actually changes how decisions get made.</p>
+      <div class="avail"><span class="dot"></span>Available for Full-Time · December 2025</div>
+    </div>
+    <div class="about-cards rv d2">
+      <div class="ic">
+        <div class="ic-lbl">CURRENT ROLE</div>
+        <div class="ic-val">Business Analyst, GRA</div>
+        <div class="ic-sub">Shepherd Center · Aug 2025–Jan 2026</div>
+      </div>
+      <div class="ic">
+        <div class="ic-lbl">EDUCATION</div>
+        <div class="ic-val">M.S. Data Science & Analytics</div>
+        <div class="ic-sub">Georgia State University · Dec 2025</div>
+        <div class="ic-badge">★ GPA: 3.96 / 4.00</div>
+      </div>
+      <div class="ic">
+        <div class="ic-lbl">LOCATION</div>
+        <div class="ic-val">Atlanta, Georgia</div>
+        <div class="ic-sub">Open to relocate globally</div>
+      </div>
+      <div class="ic">
+        <div class="ic-lbl">CONTACT</div>
+        <div class="ic-val">shreyavyas3103@gmail.com</div>
+        <div class="ic-sub">+1 (404) 751-7248</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="s-lbl">02 — Experience</div>
+  <h2 class="s-title rv">Where I've <em>worked.</em></h2>
+  <div class="exp-list">
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Aug 2025 – Jan 2026</div>
+        <div class="exp-co">Shepherd Center</div>
+        <div class="exp-loc">Atlanta, GA</div>
+      </div>
+      <div>
+        <span class="exp-type">Business Analyst · Graduate Research Assistant</span>
+        <div class="exp-ttl">ML for Healthcare Outcomes</div>
+        <ul class="exp-bul">
+          <li>Analyzed <strong>3,000+ SCI patient records</strong> across 60+ assessment variables using AI/ML predictive models (Linear Regression, Random Forest, XGBoost) to identify patterns linked to patient improvement and recovery outcomes.</li>
+          <li>Developed ML-based outcome prediction and reporting frameworks, translating model outputs into business-ready insights, <strong>reducing manual analysis effort by ~30%</strong>.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">XGBoost</span><span class="tag hi">Random Forest</span>
+          <span class="tag">Python</span><span class="tag">Healthcare ML</span><span class="tag">Data Visualization</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Feb 2025 – Jul 2025</div>
+        <div class="exp-co">Georgia State University</div>
+        <div class="exp-loc">Atlanta, GA</div>
+      </div>
+      <div>
+        <span class="exp-type">Data Scientist · Graduate Research Assistant</span>
+        <div class="exp-ttl">LLM Essay Scoring Pipeline</div>
+        <ul class="exp-bul">
+          <li>Built a rubric-grounded, multi-pass LLM essay scoring pipeline (LangChain/LCEL, <strong>LLaMA-3 via Groq</strong>, Python), improving QWK by <strong>25–30%</strong> and reducing score inflation.</li>
+          <li>Implemented deterministic binary scoring flow (6→1) with boundary re-checks, improving consistency and minimizing borderline over-scoring.</li>
+          <li>Delivered a <strong>Streamlit evaluation dashboard</strong> with batch runs and live QWK/MAE, confusion matrix, and score distribution analysis.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">LangChain</span><span class="tag hi">LLaMA-3</span>
+          <span class="tag">Groq</span><span class="tag">Streamlit</span><span class="tag">Scikit-learn</span><span class="tag">NLP</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Aug 2024 – Jan 2025</div>
+        <div class="exp-co">Truist Bank</div>
+        <div class="exp-loc">Atlanta, GA</div>
+      </div>
+      <div>
+        <span class="exp-type">Business Analyst · Graduate Research Assistant</span>
+        <div class="exp-ttl">Fraud Detection & BI Dashboards</div>
+        <ul class="exp-bul">
+          <li>Processed <strong>504,000+ transactions</strong> using SQL, Oracle and Excel for fraud detection, improving anomaly detection by <strong>23%</strong> and aligning reporting with AWS-based workflows (S3 + Redshift).</li>
+          <li>Designed scalable <strong>Tableau dashboards</strong> for operational uptime monitoring with automated pipelines, <strong>reducing anomaly response time by 40%</strong>.</li>
+          <li>Generated synthetic training data with <strong>LLM-based generative AI</strong>, enhancing model accuracy by 18% and boosting processing efficiency by 35%.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">SQL</span><span class="tag hi">Tableau</span>
+          <span class="tag">Oracle</span><span class="tag">AWS S3</span><span class="tag">Redshift</span><span class="tag">GenAI</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Oct 2023 – May 2024</div>
+        <div class="exp-co">ISRO (NRSC)</div>
+        <div class="exp-loc">Hyderabad, India</div>
+      </div>
+      <div>
+        <span class="exp-type">Data Analytics Intern</span>
+        <div class="exp-ttl">Geospatial & Environmental Analytics</div>
+        <ul class="exp-bul">
+          <li>Implemented predictive models in <strong>Python &amp; SAS</strong>, improving environmental uptime monitoring accuracy by <strong>25%</strong>; analyzed 10,000+ EMIT records to detect <strong>500+ methane/CO₂ hotspots</strong> across 20 states.</li>
+          <li>Developed geospatial analytics workflows using <strong>MATLAB &amp; QGIS</strong>, improving detection efficiency by <strong>30%</strong> while maintaining 95% model accuracy.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">Python</span><span class="tag hi">QGIS</span>
+          <span class="tag">SAS</span><span class="tag">MATLAB</span><span class="tag">Geospatial Analytics</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Jun – Sep 2023</div>
+        <div class="exp-co">Omdena</div>
+        <div class="exp-loc">Remote, USA</div>
+      </div>
+      <div>
+        <span class="exp-type">Business Intelligence Analyst</span>
+        <div class="exp-ttl">ML for Education Analytics</div>
+        <ul class="exp-bul">
+          <li>Analyzed <strong>10,000+ student records</strong> with Python, R, and EDA; built <strong>5+ ML models at 91.29% accuracy</strong>, elevating prediction efficiency by 25%.</li>
+          <li>Produced 5+ Power BI and Excel dashboards, translating ML insights into stakeholder BI, <strong>reducing reporting effort by 30%</strong>.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">Python</span><span class="tag hi">Power BI</span>
+          <span class="tag">R</span><span class="tag">Machine Learning</span><span class="tag">EDA</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Jul – Aug 2023</div>
+        <div class="exp-co">Excelerate × SLU</div>
+        <div class="exp-loc">Remote, USA</div>
+      </div>
+      <div>
+        <span class="exp-type">Business Intelligence Intern</span>
+        <div class="exp-ttl">BI for Global Campaigns</div>
+        <ul class="exp-bul">
+          <li>Led a <strong>30-member global analyst team</strong>; earned <strong>$500 scholarship</strong> and leadership badge for top-tier execution.</li>
+          <li>Delivered <strong>25+ Power BI/Tableau/QuickSight dashboards</strong> for 13 campaigns ($1.2M spend); automated KPI reporting, driving <strong>29% cost savings (~$50K/yr)</strong>.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">Power BI</span><span class="tag hi">Tableau</span>
+          <span class="tag">QuickSight</span><span class="tag">KPI Automation</span><span class="tag">Leadership</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp rv">
+      <div>
+        <div class="exp-dt">Jun – Jul 2023</div>
+        <div class="exp-co">Excelerate × IIT</div>
+        <div class="exp-loc">Remote, USA</div>
+      </div>
+      <div>
+        <span class="exp-type">Data Analyst</span>
+        <div class="exp-ttl">Supplier Analytics & ETL</div>
+        <ul class="exp-bul">
+          <li>Led <strong>20-member global team</strong>; awarded <strong>$1,000 scholarship</strong> and drove <strong>50% increase in team productivity</strong>.</li>
+          <li>Evaluated 11 campaigns with SQL/Excel/BI tools; restructured ETL on <strong>AWS S3/EC2/Redshift</strong>, enabling <strong>$30K–$40K cost savings</strong> through forecasting.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag hi">SQL</span><span class="tag">Excel</span>
+          <span class="tag">AWS</span><span class="tag">ETL</span><span class="tag">Forecasting</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- SKILLS -->
+<section id="skills" class="sec-bg">
+  <div class="s-lbl">03 — Skills</div>
+  <h2 class="s-title rv">The <em>toolkit.</em></h2>
+  <div class="sk-grid">
+    <div class="sk rv">
+      <div class="sk-ico">🐍</div>
+      <div class="sk-cat">Programming & Analytics</div>
+      <div class="sk-pills">
+        <span class="sp hl">Python</span><span class="sp hl">SQL</span><span class="sp">R</span>
+        <span class="sp">Data Wrangling</span><span class="sp">EDA</span>
+        <span class="sp">Statistics</span><span class="sp">Hypothesis Testing</span>
+        <span class="sp">A/B Testing</span><span class="sp">KPI Tracking</span>
+      </div>
+    </div>
+    <div class="sk rv d1">
+      <div class="sk-ico">📊</div>
+      <div class="sk-cat">BI & Reporting</div>
+      <div class="sk-pills">
+        <span class="sp hl">Tableau</span><span class="sp hl">Power BI</span>
+        <span class="sp">DAX</span><span class="sp">Power Query</span>
+        <span class="sp">Excel (Pivot, VLOOKUP)</span>
+        <span class="sp">Data Storytelling</span>
+        <span class="sp">Root Cause Analysis</span>
+        <span class="sp">Ad Hoc Reporting</span>
+      </div>
+    </div>
+    <div class="sk rv d2">
+      <div class="sk-ico">☁️</div>
+      <div class="sk-cat">Cloud & Data Engineering</div>
+      <div class="sk-pills">
+        <span class="sp hl">AWS S3/EC2</span><span class="sp hl">Redshift</span>
+        <span class="sp">DynamoDB</span><span class="sp">Databricks</span>
+        <span class="sp">Spark</span><span class="sp">Hadoop</span>
+        <span class="sp">Hive</span><span class="sp">ETL/ELT</span>
+        <span class="sp">MongoDB</span><span class="sp">Data Modeling</span>
+      </div>
+    </div>
+    <div class="sk rv">
+      <div class="sk-ico">🤖</div>
+      <div class="sk-cat">GenAI, ML & LLMs</div>
+      <div class="sk-pills">
+        <span class="sp hl">LangChain</span><span class="sp hl">OpenAI API</span>
+        <span class="sp">LLaMA-3 (Groq)</span>
+        <span class="sp">Prompt Engineering</span>
+        <span class="sp">RAG</span><span class="sp">FAISS</span>
+        <span class="sp">Pinecone</span>
+        <span class="sp">XGBoost</span><span class="sp">Random Forest</span>
+        <span class="sp">Feature Engineering</span>
+      </div>
+    </div>
+    <div class="sk rv d1">
+      <div class="sk-ico">🛠️</div>
+      <div class="sk-cat">Tools & Platforms</div>
+      <div class="sk-pills">
+        <span class="sp hl">Git / GitHub</span>
+        <span class="sp">JIRA</span><span class="sp">Streamlit</span>
+        <span class="sp">Scikit-learn</span><span class="sp">SAS</span>
+        <span class="sp">MATLAB</span><span class="sp">QGIS</span>
+        <span class="sp">Jupyter</span>
+      </div>
+    </div>
+    <div class="sk rv d2">
+      <div class="sk-ico">🤝</div>
+      <div class="sk-cat">Business & Leadership</div>
+      <div class="sk-pills">
+        <span class="sp hl">Stakeholder Mgmt</span>
+        <span class="sp">Cross-Functional Collab</span>
+        <span class="sp">Data Governance</span>
+        <span class="sp">Agile/Scrum</span>
+        <span class="sp">Team Leadership</span>
+        <span class="sp">$1.5K+ in Scholarships</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="s-lbl">04 — Projects</div>
+  <h2 class="s-title rv">Selected <em>work.</em></h2>
+  <div class="proj-grid">
+
+    <div class="pc rv">
+      <div class="pc-num">01 / Featured Project</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">EduMentor — AI Learning Assistant</h3>
+      <p class="pc-desc">Engineered real-time GPT feedback loops in a 5-member Agile team, improving personalized learning for 100+ students. Architected Streamlit and AWS infrastructure with GPT and SerpAPI-driven reporting.</p>
+      <div class="pc-imp">↓ 50% learning cycles · ↑ 20% retention efficiency</div>
+      <div class="tags">
+        <span class="tag">GPT / OpenAI</span><span class="tag">Streamlit</span>
+        <span class="tag">AWS</span><span class="tag">SerpAPI</span><span class="tag">Agile</span>
+      </div>
+    </div>
+
+    <div class="pc rv d1">
+      <div class="pc-num">02 / Hackathon · 🥉 3rd Place HackHers 2025</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">StrongHer — AI Wellness Companion</h3>
+      <p class="pc-desc">AI wellness companion for single mothers using Retrieval-Augmented Generation, FAISS vector search, and Streamlit. Won 3rd place at HackHers 2025 for innovation in AI for social good.</p>
+      <div class="pc-imp">🏆 HackHers 2025 — 3rd Place</div>
+      <div class="tags">
+        <span class="tag">RAG</span><span class="tag">FAISS</span>
+        <span class="tag">Streamlit</span><span class="tag">LLM</span><span class="tag">AI for Good</span>
+      </div>
+    </div>
+
+    <div class="pc rv d2">
+      <div class="pc-num">03 / Research · GSU</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">LLM Essay Scoring Pipeline</h3>
+      <p class="pc-desc">Rubric-grounded multi-pass LLM pipeline via LangChain/LCEL + LLaMA-3 (Groq). Deterministic binary scoring flow with boundary re-checks. Live Streamlit dashboard with QWK/MAE and confusion matrix analysis.</p>
+      <div class="pc-imp">↑ 25–30% QWK · Reduced score inflation</div>
+      <div class="tags">
+        <span class="tag">LangChain</span><span class="tag">LLaMA-3</span>
+        <span class="tag">Groq</span><span class="tag">NLP</span><span class="tag">Streamlit</span>
+      </div>
+    </div>
+
+    <div class="pc rv d3">
+      <div class="pc-num">04 / Industry · Truist Bank</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">Fraud Detection System</h3>
+      <p class="pc-desc">End-to-end fraud analytics on 504K+ banking transactions via SQL, Oracle, and AWS. Tableau dashboards with automated pipelines + LLM-generated synthetic training data for enhanced model performance.</p>
+      <div class="pc-imp">↑ 23% detection accuracy · ↓ 40% response time</div>
+      <div class="tags">
+        <span class="tag">SQL</span><span class="tag">Tableau</span>
+        <span class="tag">AWS Redshift</span><span class="tag">GenAI</span><span class="tag">Oracle</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- ACHIEVEMENT -->
+<section id="achievements" class="sec-bg">
+  <div class="s-lbl">05 — Achievements</div>
+  <div class="ach-wrap rv">
+    <div class="ach-medal">🥉</div>
+    <div>
+      <div class="ach-ev">HackHers 2025 · Hackathon Competition</div>
+      <div class="ach-ttl">3rd Place — StrongHer AI Companion</div>
+      <p class="ach-desc">Built <strong>StrongHer</strong>, an AI-powered wellness companion for single mothers using RAG architecture, FAISS vector search, and Streamlit. Won 3rd place for innovation in AI for social impact among all competing teams.</p>
+      <div class="ach-tags">
+        <span class="tag hi">RAG</span><span class="tag hi">FAISS</span>
+        <span class="tag">Streamlit</span><span class="tag">LLM</span><span class="tag">Python</span><span class="tag">AI for Social Good</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="s-lbl">06 — Education</div>
+  <h2 class="s-title rv">Academic <em>foundation.</em></h2>
+  <div class="edu-grid">
+    <div class="edu rv">
+      <div class="edu-ico">🎓</div>
+      <div class="edu-deg">M.S. Data Science and Analytics</div>
+      <div class="edu-sch">Georgia State University</div>
+      <div class="edu-meta">J. Mack Robinson College of Business · Atlanta, GA · Dec 2025</div>
+      <div class="edu-gpa">★ GPA: 3.96 / 4.00</div>
+      <div class="edu-sep"></div>
+      <div class="edu-dtl">Focus: Machine Learning, NLP, Statistical Modeling, Big Data Technologies, Business Analytics. Graduate Research &amp; Teaching Assistant across three departments (Shepherd Center, GSU Research, Truist Bank partnership).</div>
+    </div>
+    <div class="edu rv d1">
+      <div class="edu-ico">📘</div>
+      <div class="edu-deg">B.E. in Computer Engineering</div>
+      <div class="edu-sch">Institute of Engineering and Technology, DAVV</div>
+      <div class="edu-meta">Indore, Madhya Pradesh, India · June 2024</div>
+      <div class="edu-gpa">★ CGPA: 8.55 / 10.00</div>
+      <div class="edu-sep"></div>
+      <div class="edu-dtl">Core coursework: Algorithms, Data Structures, Database Systems, Linear Algebra, Probability &amp; Statistics, Operating Systems, Computer Networks, Software Engineering.</div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- CONTACT -->
+<section id="contact" class="sec-bg">
+  <div class="s-lbl">07 — Contact</div>
+  <div class="contact-wrap">
+    <div class="contact-body rv">
+      <h2 class="s-title">Let's <em>connect.</em></h2>
+      <p>I'm open to full-time roles in data science, business analytics, ML engineering, and BI. Whether you have a role, a project, or want to talk data — I'd love to hear from you!</p>
+      <div class="clinks">
+        <a href="https://linkedin.com/in/shreya-vyas-2001" target="_blank" class="cl">
+          <div class="cl-l"><span class="cl-ico">💼</span>
+            <div><div class="cl-name">LinkedIn</div><div class="cl-val">linkedin.com/in/shreya-vyas-2001</div></div>
+          </div><span class="cl-arr">→</span>
+        </a>
+        <a href="mailto:shreyavyas3103@gmail.com" class="cl">
+          <div class="cl-l"><span class="cl-ico">✉️</span>
+            <div><div class="cl-name">Email</div><div class="cl-val">shreyavyas3103@gmail.com</div></div>
+          </div><span class="cl-arr">→</span>
+        </a>
+        <a href="tel:+14047517248" class="cl">
+          <div class="cl-l"><span class="cl-ico">📱</span>
+            <div><div class="cl-name">Phone</div><div class="cl-val">+1 (404) 751-7248</div></div>
+          </div><span class="cl-arr">→</span>
+        </a>
+      </div>
+    </div>
+    <div class="rv d2">
+      <div class="cr-card">
+        <div class="cr-title">Quick Info</div>
+        <div class="cr-items">
+          <div class="cr-item"><span>📍</span><span>Atlanta, GA · Open to Relocate</span></div>
+          <div class="cr-item"><span>🎓</span><span>Graduating December 2025</span></div>
+          <div class="cr-item"><span>💼</span><span>Seeking Full-Time Roles</span></div>
+          <div class="cr-item"><span>⭐</span><span>GPA 3.96 / CGPA 8.55</span></div>
+          <div class="cr-item"><span>🏆</span><span>HackHers 2025 · 3rd Place</span></div>
+        </div>
+      </div>
+      <div class="cr-card">
+        <div class="cr-title">Target Roles</div>
+        <div class="cr-items">
+          <div class="cr-item"><span>🤖</span><span>Data Scientist / ML Engineer</span></div>
+          <div class="cr-item"><span>📊</span><span>Business / Data Analyst</span></div>
+          <div class="cr-item"><span>🧠</span><span>AI / GenAI Product Roles</span></div>
+          <div class="cr-item"><span>📈</span><span>BI Analytics & Reporting</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Shreya Vyas · Data Scientist · Atlanta, GA · 2025</span>
+  <div class="fl">
+    <a href="mailto:shreyavyas3103@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/shreya-vyas-2001" target="_blank">LinkedIn</a>
+    <a href="tel:+14047517248">Phone</a>
+  </div>
+</footer>
+
+<!-- CHATBOT -->
+<button id="cb-btn" onclick="toggleChat()" title="Ask Shreya's AI">
+  <span id="cb-ico">✨</span>
+</button>
+<div id="cb-panel">
+  <div class="cb-hd">
+    <div class="cb-hl">
+      <div class="cb-av">🤖</div>
+      <div>
+        <div class="cb-hn">Ask about Shreya</div>
+        <div class="cb-hs">Smart recruiter assistant · Online</div>
+      </div>
+    </div>
+    <a class="cb-resume" href="Resume_Shreya_Vyas_.pdf" download target="_blank">Resume ↓</a>
+  </div>
+  <div class="cb-msgs" id="cb-msgs">
+    <div class="msg bot">Hey! 👋 I'm Shreya's smart portfolio assistant. Ask me about her experience, projects, skills, education, achievements, or availability.</div>
+  </div>
+  <div class="cb-chips" id="cb-chips"></div>
+  <div class="cb-inp">
+    <input type="text" id="cb-input" placeholder="Ask about Shreya…" onkeydown="if(event.key==='Enter')send()"/>
+    <button id="cb-send" onclick="send()">↑</button>
+  </div>
+</div>
+
+<script>
+// CURSOR
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;curR.style.left=rx+'px';curR.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button,.pc,.sk,.exp,.edu,.cl').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('ch'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('ch'));
+});
+
+// NAV
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('stuck',scrollY>40));
+
+// THEME
+function toggleTheme(){
+  const h=document.documentElement,d=h.getAttribute('data-theme')==='dark';
+  h.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('tbtn').textContent=d?'☾':'☀';
+}
+
+// REVEAL
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.1});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// CHATBOT
+const PROFILE = {
+  name: 'Shreya Vyas',
+  email: 'shreyavyas3103@gmail.com',
+  phone: '+1 (404) 751-7248',
+  location: 'Atlanta, Georgia',
+  linkedin: 'linkedin.com/in/shreya-vyas-2001',
+  availability: 'Available for full-time roles starting December 2025. Open to relocate globally. OPT eligible.',
+  summary: "Shreya Vyas is a Data Science and Analytics master's student at Georgia State University with a 3.96 GPA. She brings a strong mix of data science, analytics, BI, ML, and GenAI experience across healthcare, banking, geospatial analytics, and education.",
+  education: [
+    'M.S. Data Science & Analytics, Georgia State University, GPA 3.96/4.00, December 2025',
+    'B.E. Computer Engineering, IET DAVV Indore, CGPA 8.55/10.00, June 2024'
+  ],
+  skills: {
+    programming: ['Python', 'SQL', 'R'],
+    analytics: ['EDA', 'Statistics', 'Hypothesis Testing', 'A/B Testing', 'KPI Tracking'],
+    bi: ['Tableau', 'Power BI', 'Excel', 'QuickSight', 'DAX', 'Power Query'],
+    ml: ['LangChain', 'LLaMA-3', 'OpenAI API', 'RAG', 'FAISS', 'Pinecone', 'XGBoost', 'Random Forest', 'Scikit-learn'],
+    cloud: ['AWS S3', 'EC2', 'Redshift', 'DynamoDB', 'Databricks', 'Spark', 'Hadoop', 'Hive'],
+    tools: ['Git', 'GitHub', 'JIRA', 'Streamlit', 'SAS', 'MATLAB', 'QGIS', 'MongoDB']
+  },
+  achievements: [
+    '3rd Place at HackHers 2025 for StrongHer',
+    '$1,000 scholarship from Excelerate × IIT',
+    '$500 scholarship and leadership badge from Excelerate × Saint Louis University'
+  ],
+  roles: [
+    {
+      id: 'shepherd',
+      org: 'Shepherd Center',
+      title: 'Business Analyst / Graduate Research Assistant',
+      period: 'Aug 2025 – Jan 2026',
+      aliases: ['shepherd', 'healthcare', 'patient', 'sci', 'recovery'],
+      summary: 'Healthcare analytics + outcome prediction',
+      answer: 'At Shepherd Center, Shreya analyzed 3,000+ spinal cord injury patient records across 60+ variables using XGBoost, Random Forest, and Linear Regression. She translated model outputs into business-ready insights and reporting frameworks, reducing manual analysis effort by about 30%.'
+    },
+    {
+      id: 'gsu',
+      org: 'Georgia State University',
+      title: 'Data Scientist / Graduate Research Assistant',
+      period: 'Feb 2025 – Jul 2025',
+      aliases: ['gsu', 'essay scoring', 'llm scoring', 'qwk', 'groq', 'langchain'],
+      summary: 'LLM evaluation + essay scoring pipeline',
+      answer: 'At Georgia State University, she built a rubric-grounded multi-pass LLM essay scoring pipeline using LangChain, LCEL, LLaMA-3 via Groq, and Python. The system improved QWK by 25–30%, reduced score inflation, and included a Streamlit dashboard for QWK, MAE, confusion matrix, and score distribution analysis.'
+    },
+    {
+      id: 'truist',
+      org: 'Truist Bank',
+      title: 'Business Analyst / Graduate Research Assistant',
+      period: 'Aug 2024 – Jan 2025',
+      aliases: ['truist', 'bank', 'fraud', 'anomaly', 'oracle', 'tableau', 'banking'],
+      summary: 'Fraud analytics + BI dashboards',
+      answer: 'At Truist Bank, Shreya processed 504,000+ transactions using SQL, Oracle, and Excel for fraud detection, improving anomaly detection by 23%. She built Tableau dashboards on top of AWS S3 and Redshift workflows, reduced anomaly response time by 40%, and used LLM-generated synthetic data to improve model scalability and accuracy by 18%.'
+    },
+    {
+      id: 'isro',
+      org: 'ISRO (NRSC)',
+      title: 'Data Analytics Intern',
+      period: 'Oct 2023 – May 2024',
+      aliases: ['isro', 'nrsc', 'geospatial', 'emit', 'methane', 'co2', 'hotspots', 'qgis'],
+      summary: 'Geospatial analytics + environmental monitoring',
+      answer: 'At ISRO NRSC, she developed predictive models in Python and SAS, improving environmental monitoring accuracy by 25%. She analyzed 10,000+ EMIT records, detected 500+ methane and CO2 hotspots across 20 states, and built MATLAB and QGIS workflows that improved detection efficiency by 30% while maintaining 95% model accuracy.'
+    },
+    {
+      id: 'omdena',
+      org: 'Omdena',
+      title: 'Business Intelligence Analyst',
+      period: 'Jun 2023 – Sep 2023',
+      aliases: ['omdena', 'student records', 'education analytics', 'power bi'],
+      summary: 'Education analytics + reporting',
+      answer: 'At Omdena, Shreya analyzed 10,000+ student records with Python and R, built 5+ machine learning models with 91.29% accuracy, and improved prediction efficiency by 25%. She also created business reports and dashboards in Power BI and Excel, reducing reporting effort by 30%.'
+    },
+    {
+      id: 'slu',
+      org: 'Excelerate × Saint Louis University',
+      title: 'Business Intelligence Intern',
+      period: 'Jul 2023 – Aug 2023',
+      aliases: ['saint louis', 'slu', 'campaign dashboards', 'quicksight'],
+      summary: 'Campaign analytics + leadership',
+      answer: 'In the Excelerate × Saint Louis University role, she led a 30-member global analyst team, delivered 25+ BI dashboards for 13 campaigns with $1.2M spend, and drove 29% cost savings, about $50K per year. She also earned a $500 scholarship and leadership badge.'
+    },
+    {
+      id: 'iit',
+      org: 'Excelerate × IIT',
+      title: 'Data Analyst',
+      period: 'Jun 2023 – Jul 2023',
+      aliases: ['iit', 'supplier analytics', 'forecasting', 'etl'],
+      summary: 'Supplier analytics + forecasting',
+      answer: 'In the Excelerate × IIT role, she led requirements and coordination for supplier analytics with a 20-member global team, improved team productivity by 50%, and restructured ETL workflows on AWS S3, EC2, and Redshift. Her forecasting work enabled roughly $30K–$40K in cost savings.'
+    }
+  ],
+  projects: [
+    {
+      id: 'edumentor',
+      name: 'EduMentor',
+      aliases: ['edumentor', 'learning assistant', 'gpt feedback', 'serpapi'],
+      summary: 'AI learning assistant',
+      answer: 'EduMentor is an AI-powered learning assistant built with GPT, SerpAPI, Streamlit, and AWS. Shreya helped improve personalized learning for 100+ students, reduce learning cycles by 50%, and improve retention efficiency by 20%.'
+    },
+    {
+      id: 'strongher',
+      name: 'StrongHer',
+      aliases: ['strongher', 'hackhers', 'wellness companion', 'single mothers'],
+      summary: 'Hackathon-winning AI wellness app',
+      answer: "StrongHer is an AI wellness companion for single mothers built with RAG, FAISS, and Streamlit. It won 3rd place at HackHers 2025 and showcases Shreya's GenAI, retrieval, and product-thinking skills."
+    },
+    {
+      id: 'aes',
+      name: 'LLM Essay Scoring Pipeline',
+      aliases: ['essay scoring', 'qwk', 'groq', 'lcel', 'langchain'],
+      summary: 'Rubric-grounded LLM evaluation system',
+      answer: 'This project is a rubric-grounded multi-pass LLM scoring system using LangChain, LCEL, LLaMA-3 via Groq, Python, and Streamlit. It improved QWK by 25–30%, reduced score inflation, and added transparent evaluation dashboards for batch analysis.'
+    },
+    {
+      id: 'fraudproj',
+      name: 'Fraud Detection Analytics',
+      aliases: ['fraud detection', 'banking transactions', 'synthetic data'],
+      summary: 'High-volume fraud analytics system',
+      answer: 'This fraud analytics work covered 504,000+ banking transactions using SQL, Oracle, AWS, Tableau, and LLM-generated synthetic data. It improved anomaly detection by 23%, improved model accuracy by 18%, and reduced response time by 40%.'
+    }
+  ]
+};
+
+const SUGGESTED_PROMPTS = [
+  'What did she do at Truist Bank?',
+  'What are her top skills?',
+  'Tell me about her LLM project',
+  'Is she open to full-time roles?',
+  'What did she do at ISRO?',
+  'Summarize her background',
+  'Why is she a good fit for a data analyst role?',
+  'Show her achievements',
+  'What tools has she used?',
+  'Tell me about StrongHer'
+];
+
+const SMALL_TALK = [
+  { terms:['hi','hello','hey','good morning','good afternoon','good evening'], reply:"Hi! 👋 I can answer recruiter-style questions about Shreya's experience, projects, skills, education, and availability." },
+  { terms:['thank you','thanks'], reply:"You're welcome! Happy to help with anything about Shreya's background or fit." }
+];
+
+function normalize(text){
+  return (text||'').toLowerCase().replace(/[^a-z0-9+.#\s-]/g,' ').replace(/\s+/g,' ').trim();
+}
+function includesAny(text, arr){ return arr.some(term => text.includes(term)); }
+function tokens(text){ return normalize(text).split(' ').filter(Boolean); }
+function uniq(arr){ return [...new Set(arr)]; }
+function levenshtein(a,b){
+  const m=a.length,n=b.length;
+  if(!m) return n; if(!n) return m;
+  const dp=Array.from({length:m+1},()=>Array(n+1).fill(0));
+  for(let i=0;i<=m;i++) dp[i][0]=i;
+  for(let j=0;j<=n;j++) dp[0][j]=j;
+  for(let i=1;i<=m;i++) for(let j=1;j<=n;j++){
+    const cost=a[i-1]===b[j-1]?0:1;
+    dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+cost);
+  }
+  return dp[m][n];
+}
+function fuzzyIncludes(query, phrase){
+  const qTokens=tokens(query), pTokens=tokens(phrase);
+  if(!qTokens.length || !pTokens.length) return false;
+  return pTokens.some(pt => qTokens.some(qt => qt===pt || (pt.length>4 && qt.includes(pt)) || (qt.length>4 && pt.includes(qt)) || levenshtein(qt,pt)<=1));
+}
+function scoreEntity(query, entity){
+  const fields = [entity.name, entity.org, entity.title, ...(entity.aliases||[])].filter(Boolean);
+  let score = 0;
+  fields.forEach(field=>{
+    const n=normalize(field);
+    if(!n) return;
+    if(normalize(query).includes(n)) score += 8;
+    if(fuzzyIncludes(query, n)) score += 4;
+    const qT=tokens(query), fT=tokens(n);
+    const overlap = fT.filter(t=>qT.includes(t)).length;
+    score += overlap * 2;
+  });
+  return score;
+}
+function formatList(arr){ return arr.join(', '); }
+function makeCards(items, kind){
+  return items.map(item => ({
+    title: item.name || item.org,
+    subtitle: kind==='role' ? `${item.title} · ${item.period}` : item.summary,
+    text: kind==='role' ? item.summary : item.answer,
+    prompt: kind==='role' ? `Tell me more about ${item.org}` : `Tell me about ${item.name}`
+  }));
+}
+function reply(text, extra={}){ return { text, cards: extra.cards||[], prompts: extra.prompts||[] }; }
+function matchBest(query, list){
+  const ranked = list.map(item => ({item, score: scoreEntity(query, item)})).sort((a,b)=>b.score-a.score);
+  return ranked[0] && ranked[0].score >= 4 ? ranked[0].item : null;
+}
+
+function smartReply(raw){
+  const q = normalize(raw);
+
+  for(const item of SMALL_TALK){
+    if(includesAny(q, item.terms)) return reply(item.reply, {prompts: ['Summarize her background','What are her top skills?','Is she open to full-time roles?']});
+  }
+
+  if(includesAny(q,['contact','email','mail','phone','reach','linkedin'])){
+    return reply(`You can reach Shreya at ${PROFILE.email}, phone ${PROFILE.phone}, or on LinkedIn at ${PROFILE.linkedin}. She is based in ${PROFILE.location} and is open to relocation.`);
+  }
+
+  if(includesAny(q,['background','about shreya','tell me about shreya','introduce','summary','who is shreya'])){
+    return reply(PROFILE.summary, {cards:[{title:'Quick snapshot',subtitle:'Profile overview',text:"Data Science & Analytics master's student with strong experience in ML, BI, fraud analytics, healthcare analytics, and GenAI.",prompt:'What are her top skills?'}],prompts:['What did she do at Truist Bank?','Tell me about her LLM project','Show her achievements']});
+  }
+
+  if(includesAny(q,['open to work','available','availability','relocate','full time','full-time','opt'])){
+    return reply(PROFILE.availability, {prompts:['What kinds of roles fit her best?','How can I contact her?']});
+  }
+
+  if(includesAny(q,['education','degree','gpa','university','college','school','graduat'])){
+    return reply(`Shreya's education includes ${PROFILE.education[0]} and ${PROFILE.education[1]}.`, {prompts:['Summarize her background','What are her top skills?']});
+  }
+
+  if(includesAny(q,['skills','tech stack','toolkit','tools','technologies'])){
+    return reply(`Her strongest skills include ${formatList(PROFILE.skills.programming)}; analytics skills like ${formatList(PROFILE.skills.analytics)}; BI tools such as ${formatList(PROFILE.skills.bi)}; ML and GenAI tools like ${formatList(PROFILE.skills.ml)}; and cloud/data tools such as ${formatList(PROFILE.skills.cloud)}.`, {prompts:['What tools has she used?','Why is she a good fit for a data analyst role?']});
+  }
+
+  if(includesAny(q,['achievement','award','hackathon','scholarship','win'])){
+    return reply(`Her key achievements include ${PROFILE.achievements.join('; ')}.`, {cards: makeCards(PROFILE.projects.filter(p=>p.id==='strongher'),'project')});
+  }
+
+  if(includesAny(q,['resume','download cv','cv','resume pdf'])){
+    return reply("Use the Resume button in the chat header to download Shreya's resume directly.", {prompts:['Summarize her background','What did she do at Truist Bank?']});
+  }
+
+  if(includesAny(q,['experience','work history','roles','worked where'])){
+    return reply('Shreya has worked across healthcare, higher education, banking, geospatial analytics, and BI. Here are some highlights:', {cards: makeCards(PROFILE.roles.slice(0,4),'role'), prompts:['What did she do at Truist Bank?','What did she do at ISRO?','Tell me about her LLM project']});
+  }
+
+  if(includesAny(q,['why hire','why should we hire','best fit','fit for data scientist','fit for analyst','fit for ml engineer','fit for data analyst'])){
+    return reply('Shreya is a strong fit because she combines hands-on machine learning with measurable business impact. She has improved QWK by 25–30%, processed 504,000+ banking transactions, reduced anomaly response time by 40%, built stakeholder-facing BI dashboards, and delivered analytics solutions across multiple domains.', {prompts:['What are her top skills?','Summarize her background','How can I contact her?']});
+  }
+
+  const matchedRole = matchBest(q, PROFILE.roles);
+  if(matchedRole) return reply(matchedRole.answer, {cards: makeCards([matchedRole],'role'), prompts:['What skills did she use there?','What business impact did she create?']});
+
+  const matchedProject = matchBest(q, PROFILE.projects);
+  if(matchedProject) return reply(matchedProject.answer, {cards: makeCards([matchedProject],'project'), prompts:['What technologies were used?','Why is this project impressive?']});
+
+  if(includesAny(q,['python','sql','aws','power bi','tableau','xgboost','random forest','streamlit','rag','faiss','openai','databricks','spark'])){
+    const skillMatches = uniq(['Python','SQL','AWS','Power BI','Tableau','XGBoost','Random Forest','Streamlit','RAG','FAISS','OpenAI API','Databricks','Spark'].filter(skill => fuzzyIncludes(q, skill)));
+    if(skillMatches.length){
+      return reply(`Yes — Shreya has experience with ${skillMatches.join(', ')} across projects in fraud detection, LLM systems, BI dashboards, healthcare analytics, and retrieval-powered applications.`, {prompts:['Tell me about her LLM project','What did she do at Truist Bank?']});
+    }
+  }
+
+  return reply("I can help with recruiter-style questions about Shreya's experience, projects, education, skills, achievements, and availability.", {prompts:['What did she do at Truist Bank?','What are her top skills?','Tell me about StrongHer','Is she open to full-time roles?']});
+}
+
+let chatOpen=false;
+function toggleChat(){
+  chatOpen=!chatOpen;
+  document.getElementById('cb-panel').classList.toggle('open',chatOpen);
+  document.getElementById('cb-btn').classList.toggle('open',chatOpen);
+  document.getElementById('cb-ico').textContent=chatOpen?'✕':'✨';
+  if(chatOpen) document.getElementById('cb-input').focus();
+}
+function addMsg(txt,type){
+  const box=document.getElementById('cb-msgs');
+  const el=document.createElement('div');
+  el.className='msg '+type; el.textContent=txt;
+  box.appendChild(el); box.scrollTop=box.scrollHeight; return el;
+}
+function addTyping(){
+  const box=document.getElementById('cb-msgs');
+  const el=document.createElement('div');
+  el.className='msg bot typing'; el.innerHTML='<span></span><span></span><span></span>';
+  box.appendChild(el); box.scrollTop=box.scrollHeight; return el;
+}
+function addCards(cards=[]){
+  if(!cards.length) return;
+  const box=document.getElementById('cb-msgs');
+  const wrap=document.createElement('div');
+  wrap.className='cb-cards';
+  cards.forEach(card=>{
+    const el=document.createElement('div');
+    el.className='cb-card';
+    el.innerHTML=`<div class="cb-card-title">${card.title}</div><div class="cb-card-sub">${card.subtitle||''}</div><div class="cb-card-txt">${card.text||''}</div>`;
+    if(card.prompt){
+      const btn=document.createElement('button');
+      btn.className='cb-card-btn';
+      btn.textContent='Ask more';
+      btn.onclick=()=>ask(card.prompt);
+      el.appendChild(btn);
+    }
+    wrap.appendChild(el);
+  });
+  box.appendChild(wrap); box.scrollTop=box.scrollHeight;
+}
+function renderChips(prompts){
+  const chipBox=document.getElementById('cb-chips');
+  chipBox.innerHTML='';
+  prompts.slice(0,6).forEach(prompt=>{
+    const btn=document.createElement('button');
+    btn.className='chip';
+    btn.textContent=prompt;
+    btn.onclick=()=>ask(prompt);
+    chipBox.appendChild(btn);
+  });
+}
+function shuffledPrompts(){
+  return [...SUGGESTED_PROMPTS].sort(()=>Math.random()-.5);
+}
+async function callAI(msg){
+  await new Promise(resolve=>setTimeout(resolve, 280));
+  return smartReply(msg);
+}
+async function ask(txt){
+  document.getElementById('cb-input').value='';
+  addMsg(txt,'user');
+  const t=addTyping();
+  const response=await callAI(txt);
+  t.remove();
+  addMsg(response.text,'bot');
+  addCards(response.cards||[]);
+  renderChips((response.prompts&&response.prompts.length?response.prompts:shuffledPrompts()));
+}
+async function send(){
+  const inp=document.getElementById('cb-input');
+  const txt=inp.value.trim();
+  if(!txt) return;
+  inp.value='';
+  ask(txt);
+}
+function qs(btn){ ask(btn.textContent); }
+renderChips(shuffledPrompts());
+</script>
+</body>
+</html>
