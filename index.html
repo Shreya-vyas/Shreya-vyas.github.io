@@ -207,6 +207,8 @@ section{padding:108px 56px;position:relative;}
 .pc:nth-child(2):hover{border-color:rgba(255,169,77,.2);}
 .pc:nth-child(3):hover{border-color:rgba(116,192,252,.2);}
 .pc:nth-child(4):hover{border-color:rgba(150,220,150,.2);}
+.pc:nth-child(5)::before{background:linear-gradient(135deg,rgba(180,120,255,.08),transparent 55%);}
+.pc:nth-child(5):hover{border-color:rgba(180,120,255,.25);}
 .pc:hover::before{opacity:1;}
 .pc-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:16px;}
 .pc-arr{position:absolute;top:26px;right:26px;width:32px;height:32px;
@@ -220,6 +222,7 @@ section{padding:108px 56px;position:relative;}
 .pc:nth-child(2) .pc-imp{color:var(--accent2);background:var(--a2Glow);border:1px solid rgba(255,169,77,.15);}
 .pc:nth-child(3) .pc-imp{color:var(--accent3);background:var(--a3Glow);border:1px solid rgba(116,192,252,.15);}
 .pc:nth-child(4) .pc-imp{color:#74ee95;background:rgba(116,238,149,.07);border:1px solid rgba(116,238,149,.15);}
+.pc:nth-child(5) .pc-imp{color:#c084fc;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.15);}
 
 /* ACHIEVEMENT */
 .ach-wrap{background:linear-gradient(135deg,var(--surface),var(--surface2));
@@ -745,6 +748,18 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
       </div>
     </div>
 
+    <a href="https://shreya-vyas.github.io/BIDS/" target="_blank" class="pc rv d4" style="grid-column:1/-1;text-decoration:none;color:inherit;">
+      <div class="pc-num">05 / Portfolio Analytics · 🔴 Live Dashboard</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">AI Talent & Growth Intelligence Platform</h3>
+      <p class="pc-desc">Executive-grade workforce analytics dashboard tracking AI hiring signals, funding intelligence, geo expansion scoring, and ML-powered startup success prediction across 22 leading AI companies — 42-month synthetic dataset + live RSS news auto-updated every hour via GitHub Actions.</p>
+      <div class="pc-imp">22 Companies · 14 Markets · 42-Month Window · ML Scored</div>
+      <div class="tags">
+        <span class="tag">Vanilla JS</span><span class="tag">Chart.js</span>
+        <span class="tag">SQL</span><span class="tag">GitHub Actions</span><span class="tag">ML Models</span><span class="tag">GitHub Pages</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -1025,6 +1040,13 @@ const PROFILE = {
       aliases: ['fraud detection', 'banking transactions', 'synthetic data'],
       summary: 'High-volume fraud analytics system',
       answer: 'This fraud analytics work covered 504,000+ banking transactions using SQL, Oracle, AWS, Tableau, and LLM-generated synthetic data. It improved anomaly detection by 23%, improved model accuracy by 18%, and reduced response time by 40%.'
+    },
+    {
+      id: 'bids',
+      name: 'AI Talent & Growth Intelligence Platform',
+      aliases: ['bids', 'ai talent', 'growth intelligence', 'workforce analytics', 'funding intelligence', 'startup predictor', 'layoff risk', 'hiring signals', 'company growth', 'talent platform', 'ai hiring'],
+      summary: 'Executive-grade AI workforce intelligence dashboard',
+      answer: 'BIDS is a fully client-side analytics platform built with Vanilla JS, Chart.js, and SVG. It tracks AI hiring signals, funding intelligence, geo expansion scoring, and ML-powered startup success prediction across 22 leading AI companies over a 42-month window. The live dashboard has 12 interactive tabs and auto-updates via hourly GitHub Actions scraping 5 AI news RSS feeds. ML models include logistic regression for startup success probability, linear OLS for 6-month hiring forecasts, and sentiment analysis for news signal classification. Live at: shreya-vyas.github.io/BIDS/'
     }
   ]
 };
@@ -1039,7 +1061,8 @@ const SUGGESTED_PROMPTS = [
   'Why is she a good fit for a data analyst role?',
   'Show her achievements',
   'What tools has she used?',
-  'Tell me about StrongHer'
+  'Tell me about StrongHer',
+  'Tell me about the BIDS project'
 ];
 
 const SMALL_TALK = [
