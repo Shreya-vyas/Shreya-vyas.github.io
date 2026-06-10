@@ -198,17 +198,17 @@ section{padding:108px 56px;position:relative;}
 .pc{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;
   position:relative;overflow:hidden;transition:all .38s;cursor:none;}
 .pc::before{content:'';position:absolute;inset:0;opacity:0;transition:opacity .38s;}
-.pc:nth-child(1)::before{background:linear-gradient(135deg,var(--aGlow),transparent 55%);}
-.pc:nth-child(2)::before{background:linear-gradient(135deg,var(--a2Glow),transparent 55%);}
-.pc:nth-child(3)::before{background:linear-gradient(135deg,var(--a3Glow),transparent 55%);}
-.pc:nth-child(4)::before{background:linear-gradient(135deg,rgba(150,220,150,.07),transparent 55%);}
+.pc:nth-child(1)::before{background:linear-gradient(135deg,rgba(180,120,255,.08),transparent 55%);}
+.pc:nth-child(2)::before{background:linear-gradient(135deg,var(--aGlow),transparent 55%);}
+.pc:nth-child(3)::before{background:linear-gradient(135deg,var(--a2Glow),transparent 55%);}
+.pc:nth-child(4)::before{background:linear-gradient(135deg,var(--a3Glow),transparent 55%);}
+.pc:nth-child(5)::before{background:linear-gradient(135deg,rgba(150,220,150,.07),transparent 55%);}
 .pc:hover{transform:translateY(-6px);box-shadow:0 22px 60px rgba(0,0,0,.42);}
-.pc:nth-child(1):hover{border-color:rgba(255,107,107,.2);}
-.pc:nth-child(2):hover{border-color:rgba(255,169,77,.2);}
-.pc:nth-child(3):hover{border-color:rgba(116,192,252,.2);}
-.pc:nth-child(4):hover{border-color:rgba(150,220,150,.2);}
-.pc:nth-child(5)::before{background:linear-gradient(135deg,rgba(180,120,255,.08),transparent 55%);}
-.pc:nth-child(5):hover{border-color:rgba(180,120,255,.25);}
+.pc:nth-child(1):hover{border-color:rgba(180,120,255,.25);}
+.pc:nth-child(2):hover{border-color:rgba(255,107,107,.2);}
+.pc:nth-child(3):hover{border-color:rgba(255,169,77,.2);}
+.pc:nth-child(4):hover{border-color:rgba(116,192,252,.2);}
+.pc:nth-child(5):hover{border-color:rgba(150,220,150,.2);}
 .pc:hover::before{opacity:1;}
 .pc-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:16px;}
 .pc-arr{position:absolute;top:26px;right:26px;width:32px;height:32px;
@@ -218,11 +218,11 @@ section{padding:108px 56px;position:relative;}
 .pc-ttl{font-size:20px;font-weight:700;letter-spacing:-.02em;margin-bottom:9px;padding-right:42px;}
 .pc-desc{font-size:13.5px;color:var(--dim);line-height:1.7;margin-bottom:12px;}
 .pc-imp{font-family:'DM Mono',monospace;font-size:11px;padding:7px 12px;border-radius:8px;margin-bottom:14px;display:inline-block;}
-.pc:nth-child(1) .pc-imp{color:var(--accent);background:var(--aGlow);border:1px solid rgba(255,107,107,.15);}
-.pc:nth-child(2) .pc-imp{color:var(--accent2);background:var(--a2Glow);border:1px solid rgba(255,169,77,.15);}
-.pc:nth-child(3) .pc-imp{color:var(--accent3);background:var(--a3Glow);border:1px solid rgba(116,192,252,.15);}
-.pc:nth-child(4) .pc-imp{color:#74ee95;background:rgba(116,238,149,.07);border:1px solid rgba(116,238,149,.15);}
-.pc:nth-child(5) .pc-imp{color:#c084fc;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.15);}
+.pc:nth-child(1) .pc-imp{color:#c084fc;background:rgba(192,132,252,.08);border:1px solid rgba(192,132,252,.15);}
+.pc:nth-child(2) .pc-imp{color:var(--accent);background:var(--aGlow);border:1px solid rgba(255,107,107,.15);}
+.pc:nth-child(3) .pc-imp{color:var(--accent2);background:var(--a2Glow);border:1px solid rgba(255,169,77,.15);}
+.pc:nth-child(4) .pc-imp{color:var(--accent3);background:var(--a3Glow);border:1px solid rgba(116,192,252,.15);}
+.pc:nth-child(5) .pc-imp{color:#74ee95;background:rgba(116,238,149,.07);border:1px solid rgba(116,238,149,.15);}
 
 /* ACHIEVEMENT */
 .ach-wrap{background:linear-gradient(135deg,var(--surface),var(--surface2));
@@ -700,8 +700,20 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
   <h2 class="s-title rv">Selected <em>work.</em></h2>
   <div class="proj-grid">
 
-    <div class="pc rv">
-      <div class="pc-num">01 / Featured Project</div>
+    <a href="https://shreya-vyas.github.io/BIDS/" target="_blank" class="pc rv" style="grid-column:1/-1;text-decoration:none;color:inherit;">
+      <div class="pc-num">01 / Featured · 🔴 Live Dashboard</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">AI Talent & Growth Intelligence Platform</h3>
+      <p class="pc-desc">Executive-grade workforce analytics dashboard tracking AI hiring signals, funding intelligence, geo expansion scoring, and ML-powered startup success prediction across 22 leading AI companies — 42-month synthetic dataset + live RSS news auto-updated every hour via GitHub Actions.</p>
+      <div class="pc-imp">22 Companies · 14 Markets · 42-Month Window · ML Scored</div>
+      <div class="tags">
+        <span class="tag">Vanilla JS</span><span class="tag">Chart.js</span>
+        <span class="tag">SQL</span><span class="tag">GitHub Actions</span><span class="tag">ML Models</span><span class="tag">GitHub Pages</span>
+      </div>
+    </a>
+
+    <div class="pc rv d1">
+      <div class="pc-num">02 / Featured Project</div>
       <div class="pc-arr">↗</div>
       <h3 class="pc-ttl">EduMentor — AI Learning Assistant</h3>
       <p class="pc-desc">Engineered real-time GPT feedback loops in a 5-member Agile team, improving personalized learning for 100+ students. Architected Streamlit and AWS infrastructure with GPT and SerpAPI-driven reporting.</p>
@@ -712,8 +724,8 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
       </div>
     </div>
 
-    <div class="pc rv d1">
-      <div class="pc-num">02 / Hackathon · 🥉 3rd Place HackHers 2025</div>
+    <div class="pc rv d2">
+      <div class="pc-num">03 / Hackathon · 🥉 3rd Place HackHers 2025</div>
       <div class="pc-arr">↗</div>
       <h3 class="pc-ttl">StrongHer — AI Wellness Companion</h3>
       <p class="pc-desc">AI wellness companion for single mothers using Retrieval-Augmented Generation, FAISS vector search, and Streamlit. Won 3rd place at HackHers 2025 for innovation in AI for social good.</p>
@@ -724,8 +736,8 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
       </div>
     </div>
 
-    <div class="pc rv d2">
-      <div class="pc-num">03 / Research · GSU</div>
+    <div class="pc rv d3">
+      <div class="pc-num">04 / Research · GSU</div>
       <div class="pc-arr">↗</div>
       <h3 class="pc-ttl">LLM Essay Scoring Pipeline</h3>
       <p class="pc-desc">Rubric-grounded multi-pass LLM pipeline via LangChain/LCEL + LLaMA-3 (Groq). Deterministic binary scoring flow with boundary re-checks. Live Streamlit dashboard with QWK/MAE and confusion matrix analysis.</p>
@@ -736,8 +748,8 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
       </div>
     </div>
 
-    <div class="pc rv d3">
-      <div class="pc-num">04 / Industry · Truist Bank</div>
+    <div class="pc rv d4">
+      <div class="pc-num">05 / Industry · Truist Bank</div>
       <div class="pc-arr">↗</div>
       <h3 class="pc-ttl">Fraud Detection System</h3>
       <p class="pc-desc">End-to-end fraud analytics on 504K+ banking transactions via SQL, Oracle, and AWS. Tableau dashboards with automated pipelines + LLM-generated synthetic training data for enhanced model performance.</p>
@@ -747,18 +759,6 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
         <span class="tag">AWS Redshift</span><span class="tag">GenAI</span><span class="tag">Oracle</span>
       </div>
     </div>
-
-    <a href="https://shreya-vyas.github.io/BIDS/" target="_blank" class="pc rv d4" style="grid-column:1/-1;text-decoration:none;color:inherit;">
-      <div class="pc-num">05 / Portfolio Analytics · 🔴 Live Dashboard</div>
-      <div class="pc-arr">↗</div>
-      <h3 class="pc-ttl">AI Talent & Growth Intelligence Platform</h3>
-      <p class="pc-desc">Executive-grade workforce analytics dashboard tracking AI hiring signals, funding intelligence, geo expansion scoring, and ML-powered startup success prediction across 22 leading AI companies — 42-month synthetic dataset + live RSS news auto-updated every hour via GitHub Actions.</p>
-      <div class="pc-imp">22 Companies · 14 Markets · 42-Month Window · ML Scored</div>
-      <div class="tags">
-        <span class="tag">Vanilla JS</span><span class="tag">Chart.js</span>
-        <span class="tag">SQL</span><span class="tag">GitHub Actions</span><span class="tag">ML Models</span><span class="tag">GitHub Pages</span>
-      </div>
-    </a>
 
   </div>
 </section>
