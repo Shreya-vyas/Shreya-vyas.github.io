@@ -223,6 +223,9 @@ section{padding:108px 56px;position:relative;}
 .pc:nth-child(3) .pc-imp{color:var(--accent2);background:var(--a2Glow);border:1px solid rgba(255,169,77,.15);}
 .pc:nth-child(4) .pc-imp{color:var(--accent3);background:var(--a3Glow);border:1px solid rgba(116,192,252,.15);}
 .pc:nth-child(5) .pc-imp{color:#74ee95;background:rgba(116,238,149,.07);border:1px solid rgba(116,238,149,.15);}
+.pc:nth-child(6)::before{background:linear-gradient(135deg,rgba(100,200,255,.08),transparent 55%);}
+.pc:nth-child(6):hover{border-color:rgba(100,200,255,.25);}
+.pc:nth-child(6) .pc-imp{color:#64c8ff;background:rgba(100,200,255,.07);border:1px solid rgba(100,200,255,.15);}
 
 /* ACHIEVEMENT */
 .ach-wrap{background:linear-gradient(135deg,var(--surface),var(--surface2));
@@ -760,6 +763,19 @@ footer{padding:22px 56px;border-top:1px solid var(--border);
       </div>
     </div>
 
+    <div class="pc rv d1">
+      <div class="pc-num">06 / Analytics · AI Sector Research</div>
+      <div class="pc-arr">↗</div>
+      <h3 class="pc-ttl">AI Funding Analysis Dashboard</h3>
+      <p class="pc-desc">End-to-end analysis of AI startup funding trends across sectors and geographies — combining SQL-driven data pipelines, Python/Pandas for wrangling, NLP-based topic clustering to categorize investment themes, and an interactive Tableau/Power BI dashboard surfacing funding signals for strategic decision-making.</p>
+      <div class="pc-imp">NLP Clustering · Funding Trend Signals · Interactive BI Dashboard</div>
+      <div class="tags">
+        <span class="tag">Python</span><span class="tag">Pandas</span>
+        <span class="tag">SQL</span><span class="tag">NLP</span><span class="tag">Clustering</span>
+        <span class="tag">Tableau</span><span class="tag">Power BI</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1042,6 +1058,13 @@ const PROFILE = {
       answer: 'This fraud analytics work covered 504,000+ banking transactions using SQL, Oracle, AWS, Tableau, and LLM-generated synthetic data. It improved anomaly detection by 23%, improved model accuracy by 18%, and reduced response time by 40%.'
     },
     {
+      id: 'aifunding',
+      name: 'AI Funding Analysis Dashboard',
+      aliases: ['ai funding', 'funding analysis', 'funding dashboard', 'startup funding', 'funding trends', 'investment analysis', 'funding intelligence'],
+      summary: 'AI sector funding trend analysis with NLP clustering and BI dashboard',
+      answer: 'The AI Funding Analysis Dashboard is an end-to-end analytics project examining AI startup funding trends across sectors and geographies. Shreya used Python and Pandas for data wrangling, SQL pipelines for querying, NLP-based topic clustering to categorize investment themes, and built an interactive Tableau/Power BI dashboard to surface actionable funding signals for strategic decision-making.'
+    },
+    {
       id: 'bids',
       name: 'AI Talent & Growth Intelligence Platform',
       aliases: ['bids', 'ai talent', 'growth intelligence', 'workforce analytics', 'funding intelligence', 'startup predictor', 'layoff risk', 'hiring signals', 'company growth', 'talent platform', 'ai hiring'],
@@ -1062,7 +1085,8 @@ const SUGGESTED_PROMPTS = [
   'Show her achievements',
   'What tools has she used?',
   'Tell me about StrongHer',
-  'Tell me about the BIDS project'
+  'Tell me about the BIDS project',
+  'Tell me about the AI Funding Analysis project'
 ];
 
 const SMALL_TALK = [
